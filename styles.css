@@ -1,0 +1,482 @@
+:root {
+  --text-color: #1a1c20;
+  --link-color: #4a76ee;
+  --background-color: #eeeff1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base Body with Soft Margin Gradients */
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  max-width: 1400px;
+  margin: 0 auto;
+  
+  /* Soft Margin Gradients (Left: Yellow/Orange, Right: Red/Orange) */
+  background-image: 
+    linear-gradient(to right, rgba(255, 200, 0, 0.05) 0%, rgba(255, 100, 0, 0.025) 8%, transparent 15%),
+    linear-gradient(to left, rgba(255, 0, 0, 0.05) 0%, rgba(255, 100, 0, 0.025) 8%, transparent 15%);
+  background-attachment: fixed;
+}
+
+/* =========================================
+   CUSTOM CURSOR LOGIC
+   ========================================= */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none; /* Hide default Windows/Mac arrow */
+  }
+
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(30, 30, 30, 0.85); /* Off-black natural color */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+
+  /* When hovering over interactive elements, hide custom cursor and show pointer */
+  .custom-cursor.hidden {
+    opacity: 0;
+  }
+
+  a, button, .portfolio-card, .interest-card, .lightbox-close {
+    cursor: pointer;
+  }
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+/* NAVBAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  height: 80px;
+}
+
+nav .left a {
+  color: var(--text-color);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+nav .right a {
+  color: var(--text-color);
+  margin: 0 10px;
+}
+
+nav .right a:last-child {
+  color: var(--background-color);
+  background-color: var(--text-color);
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+nav .right a span {
+  margin-left: 5px;
+}
+
+/* SECTION 1: Hero */
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  margin: 50px 0;
+  margin-bottom: 100px;
+  gap: 40px;
+}
+
+.hero-section .text {
+  flex: 5;
+}
+
+.hero-section .text h2 {
+  font-size: 45px;
+}
+
+.hero-section .text .links {
+  margin-top: 25px;
+}
+
+.hero-section .text .links a {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 2px solid var(--link-color);
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  transition: .1s;
+}
+
+.hero-section .text .links a:hover {
+  color: var(--text-color);
+  border: 2px solid var(--text-color);
+}
+
+.hero-section .headshot {
+  flex: 2;
+  display: flex;
+  justify-content: right;
+}
+
+/* Hero Image Glowing Shadow Gradient */
+.headshot-container {
+  position: relative;
+  display: inline-flex;
+}
+
+.headshot-container::before {
+  content: '';
+  position: absolute;
+  inset: -15px; /* Spreads out behind image */
+  background: linear-gradient(135deg, rgba(255, 200, 0, 0.7), rgba(255, 100, 0, 0.7), rgba(255, 0, 0, 0.7));
+  filter: blur(25px);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.headshot-container img {
+  width: 350px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
+
+/* SECTION 2: Skills */
+.skills-section {
+  padding: 0 50px;
+  margin-bottom: 100px;
+}
+
+.skills-section h2 {
+  text-align: center;
+  font-size: 35px;
+}
+
+.skills-section .text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.skills-section .cells {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.skills-section .cells .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 200px;
+  padding: 10px 20px;
+  margin: 10px;
+  border: 1.5px solid #d3d3d3;
+  border-radius: 5px;
+}
+
+.skills-section .cells .cell img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  border-radius: 2px;
+}
+
+.skills-section .cells .cell span {
+  font-size: 18px;
+}
+
+/* SECTION 3: Portfolio */
+.portfolio-section {
+  padding: 0 50px;
+  margin-bottom: 100px;
+}
+
+.portfolio-section h2 {
+  font-size: 35px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.portfolio-section .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.portfolio-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+}
+
+.portfolio-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.portfolio-card .content {
+  padding: 25px;
+}
+
+.portfolio-card .content h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.portfolio-card .content p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* SECTION 4: Interests */
+.interests-section {
+  padding: 0 50px;
+  margin-bottom: 100px;
+}
+
+.interests-section h2 {
+  font-size: 35px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.interests-grid-main {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.focus-group h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.interest-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background-color: transparent;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  will-change: transform;
+}
+
+.interest-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  transition: filter 0.3s ease;
+}
+
+.interest-card:hover img {
+  filter: blur(2px); /* Soft subtle 5% blur */
+}
+
+/* SECTION 5: Quote (Neumorphism Style) */
+.quote-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 50px;
+  margin-top: 150px; 
+  margin-bottom: 100px;
+}
+
+.quote-box {
+  background: var(--background-color);
+  padding: 50px;
+  border-radius: 20px;
+  /* Neumorphic soft shadows */
+  box-shadow: 10px 10px 20px #d1d3d6, -10px -10px 20px #ffffff;
+  max-width: 800px;
+  text-align: center;
+}
+
+.quote-box p {
+  font-size: 24px;
+  font-style: italic;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.quote-box span {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--link-color);
+}
+
+/* =========================================
+   LIGHTBOX MODAL
+   ========================================= */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 100000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90vh;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.lightbox.show img {
+  transform: scale(1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 45px;
+  color: #fff;
+  transition: 0.2s ease;
+}
+
+.lightbox-close:hover {
+  transform: scale(1.1);
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 900px) {
+  .portfolio-section .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 850px) {
+  .hero-section .text h2 {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 740px) {
+  .hero-section {
+    flex-direction: column-reverse;
+  }
+
+  .headshot-container img {
+    width: 300px;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    padding: 0 20px;
+  }
+
+  nav .right a {
+    font-size: 22px;
+  }
+
+  nav .right a:last-child {
+    color: var(--text-color);
+    background-color: transparent;
+    padding: 0;
+  }
+
+  nav .right a span {
+    display: none;
+  }
+
+  .hero-section, .skills-section, .portfolio-section, .interests-section, .quote-section {
+    padding: 0 20px;
+  }
+
+  .hero-section .text h2 {
+    font-size: 30px;
+  }
+
+  .skills-section .cells .cell span {
+    font-size: 16px;
+  }
+  
+  .portfolio-section .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .quote-section {
+    margin-top: 100px;
+  }
+
+  .quote-box {
+    padding: 30px 20px;
+  }
+
+  .quote-box p {
+    font-size: 18px;
+  }
+}
